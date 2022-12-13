@@ -1,1 +1,1 @@
-# ETT
+# ETT (EasyTimeTracking)
