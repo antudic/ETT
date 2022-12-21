@@ -1,4 +1,5 @@
 import time
+import QueryGenerator as generateQuery
 
 m2h = lambda num: num//60 if not num%60 else round(num/60, 3)
 # convert minutes to hours
@@ -12,7 +13,12 @@ class Entry:
 
 
     def __repr__(self):
-        return f"Entry({m2h(self.raw[1])}, '{time.ctime(self.raw[2])}', '{self.raw[3]}', " + str(self.tags)[1:-1] + ")"
+        return f"Entry({m2h(self.raw[1])}, '{time.ctime(self.raw[2])}', '{self.raw[3]}', (" + str(self.tags)[1:-1] + "))"
+
+
+    def __eq__(self, other):
+        try: return self.raw[0] == other.raw[0]
+        except AttributeError: return False
 
 
     @property
@@ -29,3 +35,6 @@ class Entry:
 
     @property
     def description(self): return self.raw[3]
+
+    @property
+    def id(self): return self.raw[0]
